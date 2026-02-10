@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Happy Valentine's Day - You are my universe">
+    <title>💕 Happy Valentine's Day 💕</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="loading">
+        <div class="heart-loader">💕</div>
+        <p>Loading your universe...</p>
+    </div>
+
+    <div id="app">
+        <canvas id="canvas3d"></canvas>
+
+        <div class="overlay">
+            <h1 class="main-title">Happy Valentine's Day</h1>
+            <!-- <p class="subtitle">You are my universe</p> -->
+        </div>
+
+        <div class="controls">
+            <button id="btn-heart" class="control-btn active" title="Heart View">
+                <span>💖</span>
+            </button>
+            <button id="btn-gallery" class="control-btn" title="Gallery View">
+                <span>🖼️</span>
+            </button>
+            <button id="btn-flying" class="control-btn" title="Flying View">
+                <span>🚀</span>
+            </button>
+        </div>
+
+        <div class="hint">
+            <p>✨ Kéo chuột để xoay • Scroll để zoom ✨</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/stars.js"></script>
+    <script src="js/heart.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/flying.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

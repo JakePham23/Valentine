@@ -1,0 +1,335 @@
+/* ===== RESET & BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== LOADING SCREEN ===== */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a15 50%, #0a0a0a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loading.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.heart-loader {
+    font-size: 80px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+#loading p {
+    color: #ff69b4;
+    font-size: 18px;
+    margin-top: 20px;
+    text-shadow: 0 0 20px #ff69b4;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ===== MAIN APP ===== */
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#canvas3d {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ===== TEXT OVERLAY ===== */
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.main-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(40px, 8vw, 80px);
+    color: #ff69b4;
+    text-shadow:
+        0 0 10px #ff69b4,
+        0 0 20px #ff69b4,
+        0 0 40px #ff1493,
+        0 0 80px #ff1493,
+        0 0 120px #ff69b4;
+    margin-bottom: 15px;
+    animation: glow 3s ease-in-out infinite alternate;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.5s ease forwards 0.5s, glow 3s ease-in-out infinite alternate 2s;
+}
+
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(16px, 3vw, 28px);
+    color: #fff;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-shadow:
+        0 0 10px rgba(255, 105, 180, 0.8),
+        0 0 30px rgba(255, 20, 147, 0.5);
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards 1s;
+}
+
+@keyframes glow {
+    from {
+        text-shadow:
+            0 0 10px #ff69b4,
+            0 0 20px #ff69b4,
+            0 0 40px #ff1493,
+            0 0 80px #ff1493;
+    }
+
+    to {
+        text-shadow:
+            0 0 20px #ff69b4,
+            0 0 40px #ff69b4,
+            0 0 60px #ff1493,
+            0 0 100px #ff1493,
+            0 0 140px #ff69b4;
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CONTROL BUTTONS ===== */
+.controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 105, 180, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    border-color: #ff69b4;
+    box-shadow:
+        0 0 30px rgba(255, 105, 180, 0.5),
+        inset 0 0 20px rgba(255, 105, 180, 0.2);
+}
+
+.control-btn.active {
+    border-color: #ff69b4;
+    background: rgba(255, 105, 180, 0.2);
+    box-shadow:
+        0 0 40px rgba(255, 105, 180, 0.6),
+        inset 0 0 30px rgba(255, 105, 180, 0.3);
+}
+
+/* ===== HINT ===== */
+.hint {
+    position: absolute;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 100;
+}
+
+.hint p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    animation: fadeInOut 4s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Mobile optimizations for iPhone XS - 15 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: clamp(32px, 10vw, 60px);
+    }
+
+    .subtitle {
+        font-size: clamp(14px, 4vw, 20px);
+        letter-spacing: 2px;
+    }
+
+    .control-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+        /* Better touch targets on mobile */
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .controls {
+        bottom: 25px;
+        gap: 12px;
+    }
+
+    .hint {
+        bottom: 95px;
+    }
+
+    .hint p {
+        font-size: 11px;
+    }
+}
+
+/* iPhone specific optimizations */
+@media (max-width: 430px) {
+
+    /* For iPhone 15 Pro Max and similar */
+    .overlay {
+        padding: 0 20px;
+    }
+
+    .control-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    .controls {
+        bottom: 20px;
+        gap: 10px;
+    }
+
+    .hint {
+        bottom: 85px;
+    }
+
+    .hint p {
+        font-size: 10px;
+        padding: 0 15px;
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .overlay {
+        top: 45%;
+    }
+
+    .main-title {
+        font-size: clamp(24px, 6vw, 40px);
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: clamp(12px, 3vw, 18px);
+    }
+
+    .controls {
+        bottom: 15px;
+    }
+
+    .hint {
+        bottom: 70px;
+    }
+
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+/* Prevent text selection on mobile */
+@media (max-width: 768px) {
+    * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* Better scrolling behavior */
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+}
